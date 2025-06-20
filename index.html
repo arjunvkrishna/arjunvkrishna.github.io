@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARJUN V K - DevOps Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom styles for a modern look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f; /* Navy background */
+            color: #ccd6f6; /* Light slate text */
+        }
+        .highlight {
+            color: #64ffda; /* Neon green/teal for highlights */
+        }
+        .section-title {
+            color: #e6f1ff; /* Lightest slate for titles */
+        }
+        .card {
+            background-color: #112240; /* Lighter navy for cards */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid #1d2d50;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        .skill-icon {
+            transition: color 0.3s ease;
+        }
+        .skill-icon:hover {
+            color: #64ffda;
+        }
+        /* Scroll reveal animation */
+        .reveal {
+            position: relative;
+            transform: translateY(150px);
+            opacity: 0;
+            transition: 1s all ease;
+        }
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        /* Custom animated background */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="antialiased leading-relaxed">
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-[#0a192f] bg-opacity-80 backdrop-blur-md z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold highlight tracking-widest">VK</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="hover:text-highlight transition-colors duration-300">About</a>
+                <a href="#skills" class="hover:text-highlight transition-colors duration-300">Skills</a>
+                <a href="#experience" class="hover:text-highlight transition-colors duration-300">Experience</a>
+                <a href="#projects" class="hover:text-highlight transition-colors duration-300">Projects</a>
+                <a href="#contact" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight hover:bg-opacity-10 transition-colors duration-300">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 hover:text-highlight">About</a>
+            <a href="#skills" class="block py-2 hover:text-highlight">Skills</a>
+            <a href="#experience" class="block py-2 hover:text-highlight">Experience</a>
+            <a href="#projects" class="block py-2 hover:text-highlight">Projects</a>
+            <a href="#contact" class="block mt-2 px-4 py-2 border border-highlight text-highlight rounded-md text-center">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-32">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-[70vh] flex flex-col justify-center items-start reveal">
+            <p class="text-lg highlight mb-4">Hi, my name is</p>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-200">ARJUN V K.</h1>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-400 mt-2">I build and automate clouds.</h2>
+            <p class="mt-6 max-w-xl text-lg text-slate-400">
+                I'm a DevOps Engineer specializing in building robust, scalable, and automated infrastructure.
+                Currently focused on cloud-native technologies and creating seamless CI/CD pipelines to drive business efficiency.
+            </p>
+            <div class="mt-8 flex space-x-4">
+                <a href="https://github.com/arjunvkrishna" target="_blank" rel="noopener noreferrer" class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="github" class="w-8 h-8"></i></a>
+                <a href="https://linkedin.com/in/arjun-v-k-627b30197" target="_blank" rel="noopener noreferrer" class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-24 reveal">
+            <h2 class="section-title text-3xl font-bold mb-8 flex items-center">
+                <span class="highlight mr-4">01.</span> About Me
+                <span class="h-px bg-slate-600 flex-grow ml-6"></span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
+                <div class="md:col-span-3 text-slate-400 space-y-4 text-lg">
+                    <p>
+                        Hello! I'm Arjun, a DevOps engineer with a passion for streamlining development and operations. My journey in tech started with a deep curiosity for how large-scale systems work, which led me to the world of Linux, automation, and cloud computing.
+                    </p>
+                    <p>
+                        My hands-on experience spans diverse industries including telecom, banking, gaming, food delivery, and healthcare. In these sectors, I've honed my skills in designing CI/CD pipelines, managing Kubernetes clusters at scale, and implementing GitOps principles for reliable, declarative infrastructure.
+                    </p>
+                    <p>
+                        I thrive on solving complex problems and believe in the power of automation to eliminate toil and foster innovation. Whether it's architecting a solution on AWS or GCP, or fine-tuning a Grafana dashboard for better observability, I'm always eager to learn and apply new technologies.
+                    </p>
+                </div>
+                <div class="md:col-span-2 flex justify-center">
+                    <div class="relative w-64 h-64 group">
+                        <div class="absolute inset-0 bg-highlight rounded-lg transform rotate-6 group-hover:rotate-3 transition-transform duration-300"></div>
+                        <img src="https://placehold.co/400x400/0a192f/ccd6f6?text=VK" alt="Arjun V K" class="relative w-full h-full rounded-lg object-cover z-10 grayscale hover:grayscale-0 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 text-center reveal">
+             <h2 class="section-title text-3xl font-bold mb-12 flex items-center justify-center">
+                <span class="highlight mr-4">02.</span> My Tech Stack
+            </h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <!-- Skill items -->
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="server" class="w-16 h-16"></i><span>AWS</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="cloud" class="w-16 h-16"></i><span>GCP</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="box" class="w-16 h-16"></i><span>Docker</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="ship" class="w-16 h-16"></i><span>Kubernetes</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="gitlab" class="w-16 h-16"></i><span>GitLab CI/CD</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="git-branch" class="w-16 h-16"></i><span>Git</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="anchor" class="w-16 h-16"></i><span>Helm</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="git-merge" class="w-16 h-16"></i><span>Flux (GitOps)</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="terminal" class="w-16 h-16"></i><span>Linux</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="area-chart" class="w-16 h-16"></i><span>Grafana</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="server-cog" class="w-16 h-16"></i><span>Web Servers</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="message-square-more" class="w-16 h-16"></i><span>Kafka</span></div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-24 reveal">
+            <h2 class="section-title text-3xl font-bold mb-8 flex items-center">
+                <span class="highlight mr-4">03.</span> Where I've Worked
+                <span class="h-px bg-slate-600 flex-grow ml-6"></span>
+            </h2>
+            <div class="space-y-12">
+                <!-- Job 1 -->
+                <div class="card p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Inspired Gaming</span></h3>
+                    <p class="text-slate-400 mb-4">Present</p>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2">
+                        <li>Architecting and managing scalable Kubernetes clusters on GCP and AWS.</li>
+                        <li>Implementing and championing GitOps workflows using Flux CD for automated, declarative deployments.</li>
+                        <li>Developing and maintaining CI/CD pipelines with GitLab CI, reducing deployment times by over 40%.</li>
+                        <li>Enhancing system observability with Prometheus, Grafana, and Loki stack.</li>
+                    </ul>
+                </div>
+                <!-- Job 2 -->
+                <div class="card p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Sequato</span></h3>
+                    <p class="text-slate-400 mb-4">3 Years</p>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2">
+                        <li>Managed a hybrid cloud environment, ensuring high availability and performance for critical applications.</li>
+                        <li>Automated infrastructure provisioning using Terraform and Ansible.</li>
+                        <li>Administered Docker container environments and began initial migration efforts toward Kubernetes.</li>
+                        <li>Maintained core services including Kafka message brokers and various web servers (Nginx, Apache).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-24 reveal">
+             <h2 class="section-title text-3xl font-bold mb-12 text-center">Certifications</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                 <div class="card p-6 rounded-lg flex items-center space-x-6">
+                     <div class="flex-shrink-0">
+                         <i data-lucide="shield-check" class="w-16 h-16 text-highlight"></i>
+                     </div>
+                     <div>
+                         <h3 class="text-xl font-bold text-slate-200">Certified Ethical Hacker (CEH)</h3>
+                         <p class="text-slate-400">Demonstrates proficiency in security principles and ethical hacking techniques to identify and secure vulnerabilities.</p>
+                     </div>
+                 </div>
+                 <div class="card p-6 rounded-lg flex items-center space-x-6">
+                     <div class="flex-shrink-0">
+                         <i data-lucide="hard-hat" class="w-16 h-16 text-highlight"></i>
+                     </div>
+                     <div>
+                         <h3 class="text-xl font-bold text-slate-200">Red Hat Certified System Admin (RHCSA)</h3>
+                         <p class="text-slate-400">Validates core system administration skills required to manage Red Hat Enterprise Linux environments.</p>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 reveal">
+            <h2 class="section-title text-3xl font-bold mb-8 flex items-center">
+                <span class="highlight mr-4">04.</span> Some Things I've Built
+                <span class="h-px bg-slate-600 flex-grow ml-6"></span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project Card 1 -->
+                <div class="card p-6 rounded-lg flex flex-col">
+                    <div class="flex justify-between items-center mb-4">
+                        <i data-lucide="folder-git-2" class="w-10 h-10 text-highlight"></i>
+                        <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-2">Automated K8s Provisioner</h3>
+                    <p class="text-slate-400 flex-grow">A set of Terraform modules and Ansible playbooks to spin up production-ready Kubernetes clusters on AWS EKS and GCP GKE with batteries included.</p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
+                        <span class="bg-gray-700 px-2 py-1 rounded">Terraform</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">Ansible</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">AWS</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">GCP</span>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="card p-6 rounded-lg flex flex-col">
+                     <div class="flex justify-between items-center mb-4">
+                        <i data-lucide="folder-git-2" class="w-10 h-10 text-highlight"></i>
+                        <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-2">GitOps Monitoring Stack</h3>
+                    <p class="text-slate-400 flex-grow">A complete monitoring and logging stack (Prometheus, Grafana, Loki) deployed and managed via a Flux CD GitOps repository.</p>
+                     <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
+                        <span class="bg-gray-700 px-2 py-1 rounded">Kubernetes</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">Helm</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">Flux</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">Grafana</span>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="card p-6 rounded-lg flex flex-col">
+                     <div class="flex justify-between items-center mb-4">
+                        <i data-lucide="folder-git-2" class="w-10 h-10 text-highlight"></i>
+                        <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-2">Dynamic CI/CD Templates</h3>
+                    <p class="text-slate-400 flex-grow">A library of reusable GitLab CI/CD templates that dynamically generate pipeline stages based on project type and branch name, reducing pipeline config duplication by 90%.</p>
+                     <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
+                        <span class="bg-gray-700 px-2 py-1 rounded">GitLab CI</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">YAML</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 text-center max-w-2xl mx-auto reveal">
+            <h2 class="section-title text-2xl font-bold mb-4">
+                <span class="highlight mr-3">05.</span> What's Next?
+            </h2>
+            <h3 class="text-5xl font-black text-slate-200 mb-4">Get In Touch</h3>
+            <p class="text-slate-400 mb-8">
+                I'm always open to discussing new opportunities or interesting projects. Whether you have a question or just want to say hi, feel free to reach out. My inbox is always open!
+            </p>
+            <a href="mailto:arjunvk42@gmail.com" class="inline-block px-8 py-4 border border-highlight text-highlight rounded-md text-lg hover:bg-highlight hover:bg-opacity-10 transition-colors duration-300">
+                Say Hello
+            </a>
+        </section>
+    </main>
+
+    <footer class="text-center py-6 text-slate-500 text-sm">
+        <p>Designed & Built by ARJUN V K</p>
+        <p>Inspired by modern web design trends.</p>
+    </footer>
+
+    <script>
+        // Initialize lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll reveal animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    // To re-trigger animation on scroll up
+                    // reveals[i].classList.remove("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger reveal on load
+        reveal();
+        
+        // Animated background canvas
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = '#64ffda';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.size > 0.1) this.size -= 0.01;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+        
+        initParticles();
+        animateParticles();
+    </script>
+</body>
+</html>
