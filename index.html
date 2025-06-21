@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Custom styles for a modern look */
@@ -15,6 +15,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #0a192f; /* Navy background */
             color: #ccd6f6; /* Light slate text */
+            overflow-x: hidden; /* Prevent horizontal scroll from parallax */
         }
         .highlight {
             color: #64ffda; /* Neon green/teal for highlights */
@@ -31,12 +32,7 @@
             transform: translateY(-10px);
             box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
         }
-        .skill-icon {
-            transition: color 0.3s ease;
-        }
-        .skill-icon:hover {
-            color: #64ffda;
-        }
+        
         /* Scroll reveal animation */
         .reveal {
             position: relative;
@@ -48,20 +44,173 @@
             transform: translateY(0);
             opacity: 1;
         }
-        /* Custom animated background */
-        #canvas-bg {
+
+        /* 4. Parallax Background with Tech Patterns */
+        #parallax-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+        }
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: repeat;
+        }
+        #layer-1 { /* Particles */
             opacity: 0.1;
+        }
+        #layer-2 { /* Grid Pattern */
+            background-image:
+                linear-gradient(rgba(100, 255, 218, 0.05) 1px, transparent 1px),
+                linear-gradient(to right, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+         #layer-3 { /* Faint Circuit Pattern */
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M50 0 V100 M0 50 H100" stroke="%231d2d50" stroke-width="1.5" shape-rendering="crispEdges" /></pattern></defs><rect width="100%" height="100%" fill="url(%23p)"/></svg>');
+            opacity: 0.2;
+        }
+
+
+        /* Typing effect styles */
+        .type-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem; /* Match text size */
+            background-color: #64ffda;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { background-color: transparent; }
+        }
+        .pulse-effect {
+            animation: pulse-anim 0.3s ease-out;
+        }
+        @keyframes pulse-anim {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+
+        /* 1. Decode Effect on Name Hover */
+        .decode {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* 2. Tech Stack Icon Animation */
+        .skill-icon {
+            transition: all 0.3s ease-in-out;
+            padding: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .reveal.active .skill-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .skill-icon:hover {
+            color: #64ffda;
+            transform: translateY(-5px) scale(1.1) !important;
+        }
+        /* Staggered animation delays */
+        .reveal.active .skill-icon:nth-child(1) { transition-delay: 0.1s; }
+        .reveal.active .skill-icon:nth-child(2) { transition-delay: 0.2s; }
+        .reveal.active .skill-icon:nth-child(3) { transition-delay: 0.3s; }
+        .reveal.active .skill-icon:nth-child(4) { transition-delay: 0.4s; }
+        .reveal.active .skill-icon:nth-child(5) { transition-delay: 0.5s; }
+        .reveal.active .skill-icon:nth-child(6) { transition-delay: 0.6s; }
+        .reveal.active .skill-icon:nth-child(7) { transition-delay: 0.7s; }
+        .reveal.active .skill-icon:nth-child(8) { transition-delay: 0.8s; }
+        .reveal.active .skill-icon:nth-child(9) { transition-delay: 0.9s; }
+        .reveal.active .skill-icon:nth-child(10) { transition-delay: 1.0s; }
+        .reveal.active .skill-icon:nth-child(11) { transition-delay: 1.1s; }
+        .reveal.active .skill-icon:nth-child(12) { transition-delay: 1.2s; }
+        
+        /* Style for the randomly highlighted skill */
+        .highlight-skill {
+            color: #64ffda;
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+            border-radius: 8px;
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        /* 3. CI/CD Pipeline Animation */
+        .pipeline-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 3rem;
+        }
+        .pipeline-node {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #233554;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8892b0;
+            transition: all 0.5s;
+            position: relative;
+        }
+        .pipeline-node.active {
+            border-color: #64ffda;
+            color: #64ffda;
+            box-shadow: 0 0 15px #64ffda;
+        }
+        .pipeline-connector {
+            height: 4px;
+            width: 100px;
+            background-color: #233554;
+            position: relative;
+            overflow: hidden;
+        }
+        .pipeline-packet {
+            position: absolute;
+            top: 0;
+            left: -10px;
+            width: 10px;
+            height: 4px;
+            background-color: #64ffda;
+            border-radius: 2px;
+            box-shadow: 0 0 10px #64ffda;
+            opacity: 0;
+        }
+        .reveal.active .pipeline-node-1 { animation: pulse-node 4s infinite 0.5s; }
+        .reveal.active .packet-1 { animation: flow 1.5s linear infinite 1s; }
+        .reveal.active .pipeline-node-2 { animation: pulse-node 4s infinite 2.5s; }
+        .reveal.active .packet-2 { animation: flow 1.5s linear infinite 3s; }
+        .reveal.active .pipeline-node-3 { animation: pulse-node 4s infinite 4.5s; }
+
+        @keyframes flow {
+            0% { left: -10px; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { left: 100px; opacity: 0; }
+        }
+        @keyframes pulse-node {
+            0%, 100% { border-color: #233554; color: #8892b0; box-shadow: none; }
+            25%, 75% { border-color: #64ffda; color: #64ffda; box-shadow: 0 0 15px #64ffda; }
         }
     </style>
 </head>
 <body class="antialiased leading-relaxed">
-    <canvas id="canvas-bg"></canvas>
+    <div id="parallax-bg">
+        <canvas id="layer-1" class="parallax-layer"></canvas>
+        <div id="layer-2" class="parallax-layer"></div>
+        <div id="layer-3" class="parallax-layer"></div>
+    </div>
 
     <!-- Header & Navigation -->
     <header class="fixed top-0 left-0 right-0 bg-[#0a192f] bg-opacity-80 backdrop-blur-md z-50 shadow-md">
@@ -88,16 +237,20 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-6 pt-32">
+    <main class="container mx-auto px-6 pt-32 relative z-10">
         <!-- Hero Section -->
         <section id="hero" class="min-h-[70vh] flex flex-col justify-center items-start reveal">
             <p class="text-lg highlight mb-4">Hi, my name is</p>
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-200">ARJUN V K.</h1>
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-400 mt-2">I build and automate clouds.</h2>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-200 decode" data-text="ARJUN V K.">ARJUN V K.</h1>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-400 mt-2">I herd containers and automate the inevitable.</h2>
             <p class="mt-6 max-w-xl text-lg text-slate-400">
-                I'm a DevOps Engineer specializing in building robust, scalable, and automated infrastructure.
-                Currently focused on cloud-native technologies and creating seamless CI/CD pipelines to drive business efficiency.
+                My job is to build the digital assembly lines that deliver code, hopefully without too many explosions. I specialize in "cloud-native," which is a fancy way of saying I'm good at using other people's computers.
             </p>
+            <!-- Interactive typing effect -->
+            <div id="skill-container" class="mt-4 text-lg text-slate-400 flex items-center gap-3 h-8">
+                 <span id="typed-skill" class="highlight font-bold text-xl"></span>
+                <span class="type-cursor"></span>
+            </div>
             <div class="mt-8 flex space-x-4">
                 <a href="https://github.com/arjunvkrishna" target="_blank" rel="noopener noreferrer" class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="github" class="w-8 h-8"></i></a>
                 <a href="https://linkedin.com/in/arjun-v-k-627b30197" target="_blank" rel="noopener noreferrer" class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
@@ -113,13 +266,13 @@
             <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
                 <div class="md:col-span-3 text-slate-400 space-y-4 text-lg">
                     <p>
-                        Hello! I'm Arjun, a DevOps engineer with a passion for streamlining development and operations. My journey in tech started with a deep curiosity for how large-scale systems work, which led me to the world of Linux, automation, and cloud computing.
+                        Hello! I'm Arjun. As a DevOps engineer, my job is to automate things so that when something breaks, we can confidently blame the code instead of the infrastructure. My passion is writing scripts to solve problems that people didn't even know they had yet.
                     </p>
                     <p>
-                        My hands-on experience spans diverse industries including telecom, banking, gaming, food delivery, and healthcare. In these sectors, I've honed my skills in designing CI/CD pipelines, managing Kubernetes clusters at scale, and implementing GitOps principles for reliable, declarative infrastructure.
+                        I've navigated the complex backends of diverse industries like telecom, banking, gaming, food delivery, and even healthcare. It turns out that whether you're processing financial transactions or delivering a late-night pizza, everyone's servers need a babysitter. I've been that babysitter, armed with Kubernetes, GitOps, and a healthy dose of skepticism for any pull request that has more than 50 lines.
                     </p>
                     <p>
-                        I thrive on solving complex problems and believe in the power of automation to eliminate toil and foster innovation. Whether it's architecting a solution on AWS or GCP, or fine-tuning a Grafana dashboard for better observability, I'm always eager to learn and apply new technologies.
+                        I thrive on making complex systems look easy, mostly by wrestling with YAML files and cloud consoles until they submit. Whether it's on AWS or GCP, my goal is to build things that are so automated, they practically run themselves. After all, less manual work means more time to contemplate why the build failed this time.
                     </p>
                 </div>
                 <div class="md:col-span-2 flex justify-center">
@@ -134,7 +287,7 @@
         <!-- Skills Section -->
         <section id="skills" class="py-24 text-center reveal">
              <h2 class="section-title text-3xl font-bold mb-12 flex items-center justify-center">
-                <span class="highlight mr-4">02.</span> My Tech Stack
+                <span class="highlight mr-4">02.</span> My Arsenal of Acronyms
             </h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
                 <!-- Skill items -->
@@ -156,19 +309,28 @@
         <!-- Experience Section -->
         <section id="experience" class="py-24 reveal">
             <h2 class="section-title text-3xl font-bold mb-8 flex items-center">
-                <span class="highlight mr-4">03.</span> Where I've Worked
+                <span class="highlight mr-4">03.</span> Places That Paid Me to Stare at Terminals
                 <span class="h-px bg-slate-600 flex-grow ml-6"></span>
             </h2>
+             <!-- CI/CD Pipeline Animation -->
+            <div class="pipeline-container reveal mb-16">
+                <div class="pipeline-node pipeline-node-1"><i data-lucide="git-commit" class="mb-1"></i> Build</div>
+                <div class="pipeline-connector"><div class="pipeline-packet packet-1"></div></div>
+                <div class="pipeline-node pipeline-node-2"><i data-lucide="file-check-2" class="mb-1"></i> Test</div>
+                <div class="pipeline-connector"><div class="pipeline-packet packet-2"></div></div>
+                <div class="pipeline-node pipeline-node-3"><i data-lucide="rocket" class="mb-1"></i> Deploy</div>
+            </div>
+
             <div class="space-y-12">
                 <!-- Job 1 -->
                 <div class="card p-6 rounded-lg">
                     <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Inspired Gaming</span></h3>
                     <p class="text-slate-400 mb-4">Present</p>
                     <ul class="list-disc list-inside text-slate-400 space-y-2">
-                        <li>Architecting and managing scalable Kubernetes clusters on GCP and AWS.</li>
-                        <li>Implementing and championing GitOps workflows using Flux CD for automated, declarative deployments.</li>
-                        <li>Developing and maintaining CI/CD pipelines with GitLab CI, reducing deployment times by over 40%.</li>
-                        <li>Enhancing system observability with Prometheus, Grafana, and Loki stack.</li>
+                        <li>Taught Kubernetes clusters how to behave, mostly successfully, across AWS and GCP.</li>
+                        <li>Convinced teams that letting Git manage everything was a good idea. Now we just blame the repo.</li>
+                        <li>Built CI/CD pipelines that moved code from a dev's laptop to production, occasionally faster than they could write new bugs.</li>
+                        <li>Made pretty Grafana dashboards so we could watch things fail in high resolution.</li>
                     </ul>
                 </div>
                 <!-- Job 2 -->
@@ -176,10 +338,10 @@
                     <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Seqato</span></h3>
                     <p class="text-slate-400 mb-4">3 Years</p>
                     <ul class="list-disc list-inside text-slate-400 space-y-2">
-                        <li>Managed a hybrid cloud environment, ensuring high availability and performance for critical applications.</li>
-                        <li>Automated infrastructure provisioning using Terraform and Ansible.</li>
-                        <li>Administered Docker container environments and began initial migration efforts toward Kubernetes.</li>
-                        <li>Maintained core services including Kafka message brokers and various web servers (Nginx, Apache).</li>
+                        <li>Kept the lights on for a mix of new-fangled cloud servers and some ancient box humming in a closet.</li>
+                        <li>Wrote enough Terraform and Ansible to build a small digital empire, or at least a staging environment.</li>
+                        <li>Began the great migration from Docker containers to the promised land of Kubernetes.</li>
+                        <li>Served as the designated Kafka whisperer and web server therapist.</li>
                     </ul>
                 </div>
             </div>
@@ -187,7 +349,7 @@
         
         <!-- Certifications Section -->
         <section id="certifications" class="py-24 reveal">
-             <h2 class="section-title text-3xl font-bold mb-12 text-center">Certifications</h2>
+             <h2 class="section-title text-3xl font-bold mb-12 text-center">Fancy Papers That Say I Know Things</h2>
              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                  <div class="card p-6 rounded-lg flex items-center space-x-6">
                      <div class="flex-shrink-0">
@@ -195,7 +357,7 @@
                      </div>
                      <div>
                          <h3 class="text-xl font-bold text-slate-200">Certified Ethical Hacker (CEH)</h3>
-                         <p class="text-slate-400">Demonstrates proficiency in security principles and ethical hacking techniques to identify and secure vulnerabilities.</p>
+                         <p class="text-slate-400">Officially certified to break things (ethically, of course) before someone else does (unethically).</p>
                      </div>
                  </div>
                  <div class="card p-6 rounded-lg flex items-center space-x-6">
@@ -204,7 +366,7 @@
                      </div>
                      <div>
                          <h3 class="text-xl font-bold text-slate-200">Red Hat Certified System Admin (RHCSA)</h3>
-                         <p class="text-slate-400">Validates core system administration skills required to manage Red Hat Enterprise Linux environments.</p>
+                         <p class="text-slate-400">Proves I can navigate a Linux terminal without needing to Google every single command. Mostly.</p>
                      </div>
                  </div>
              </div>
@@ -213,7 +375,7 @@
         <!-- Projects Section -->
         <section id="projects" class="py-24 reveal">
             <h2 class="section-title text-3xl font-bold mb-8 flex items-center">
-                <span class="highlight mr-4">04.</span> Some Things I've Built
+                <span class="highlight mr-4">04.</span> Side Quests & Experiments
                 <span class="h-px bg-slate-600 flex-grow ml-6"></span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -224,7 +386,7 @@
                         <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
                     </div>
                     <h3 class="text-xl font-bold text-slate-200 mb-2">Automated K8s Provisioner</h3>
-                    <p class="text-slate-400 flex-grow">A set of Terraform modules and Ansible playbooks to spin up production-ready Kubernetes clusters on AWS EKS and GCP GKE with batteries included.</p>
+                    <p class="text-slate-400 flex-grow">A collection of scripts that promise to build a Kubernetes cluster without manual intervention. It works most of the time.</p>
                     <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
                         <span class="bg-gray-700 px-2 py-1 rounded">Terraform</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">Ansible</span>
@@ -239,7 +401,7 @@
                         <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
                     </div>
                     <h3 class="text-xl font-bold text-slate-200 mb-2">GitOps Monitoring Stack</h3>
-                    <p class="text-slate-400 flex-grow">A complete monitoring and logging stack (Prometheus, Grafana, Loki) deployed and managed via a Flux CD GitOps repository.</p>
+                    <p class="text-slate-400 flex-grow">A setup to deploy Prometheus and Grafana using the very GitOps principles it's meant to monitor. What could go wrong?</p>
                      <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
                         <span class="bg-gray-700 px-2 py-1 rounded">Kubernetes</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">Helm</span>
@@ -254,7 +416,7 @@
                         <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
                     </div>
                     <h3 class="text-xl font-bold text-slate-200 mb-2">Dynamic CI/CD Templates</h3>
-                    <p class="text-slate-400 flex-grow">A library of reusable GitLab CI/CD templates that dynamically generate pipeline stages based on project type and branch name, reducing pipeline config duplication by 90%.</p>
+                    <p class="text-slate-400 flex-grow">A heroic attempt to stop developers from copy-pasting the same 200 lines of CI YAML into every new project.</p>
                      <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
                         <span class="bg-gray-700 px-2 py-1 rounded">GitLab CI</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">YAML</span>
@@ -267,112 +429,223 @@
         <!-- Contact Section -->
         <section id="contact" class="py-24 text-center max-w-2xl mx-auto reveal">
             <h2 class="section-title text-2xl font-bold mb-4">
-                <span class="highlight mr-3">05.</span> What's Next?
+                <span class="highlight mr-3">05.</span> So, What Now?
             </h2>
-            <h3 class="text-5xl font-black text-slate-200 mb-4">Get In Touch</h3>
+            <h3 class="text-5xl font-black text-slate-200 mb-4">Talk To Me</h3>
             <p class="text-slate-400 mb-8">
-                I'm always open to discussing new opportunities or interesting projects. Whether you have a question or just want to say hi, feel free to reach out. My inbox is always open!
+                My inbox is a bottomless pit, but feel free to throw your message in anyway. I'm open to interesting projects, challenging problems, or just hearing about why your build failed.
             </p>
             <a href="mailto:arjunvk42@gmail.com" class="inline-block px-8 py-4 border border-highlight text-highlight rounded-md text-lg hover:bg-highlight hover:bg-opacity-10 transition-colors duration-300">
-                Say Hello
+                Launch a Probe
             </a>
         </section>
     </main>
 
     <footer class="text-center py-6 text-slate-500 text-sm">
-        <p>Designed & Built by ARJUN V K</p>
-        <p>Inspired by modern web design trends.</p>
+        <p>Cobbled Together with Code & Caffeine by ARJUN V K</p>
+        <p>Inspired by sleepless nights and Stack Overflow.</p>
     </footer>
 
     <script>
-        // Initialize lucide icons
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize lucide icons
+            lucide.createIcons();
 
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
 
-        // Scroll reveal animation
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                } else {
-                    // To re-trigger animation on scroll up
-                    // reveals[i].classList.remove("active");
+            // Scroll reveal animation
+            function reveal() {
+                var reveals = document.querySelectorAll(".reveal");
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = window.innerHeight;
+                    var elementTop = reveals[i].getBoundingClientRect().top;
+                    var elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    } else {
+                        // reveals[i].classList.remove("active");
+                    }
                 }
             }
-        }
-        window.addEventListener("scroll", reveal);
-        // Trigger reveal on load
-        reveal();
-        
-        // Animated background canvas
-        const canvas = document.getElementById('canvas-bg');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+            window.addEventListener("scroll", reveal);
+            // Trigger reveal on load
+            reveal();
+            
+            // Parallax background effect
+            const layer1 = document.getElementById('layer-1');
+            const layer2 = document.getElementById('layer-2');
+            const layer3 = document.getElementById('layer-3');
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                if(layer1) layer1.style.transform = `translateY(${scrollY * 0.1}px)`;
+                if(layer2) layer2.style.transform = `translateY(${scrollY * 0.3}px)`;
+                if(layer3) layer3.style.transform = `translateY(${scrollY * 0.5}px)`;
+            });
 
-        let particles = [];
-        const particleCount = 50;
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = '#64ffda';
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.size > 0.1) this.size -= 0.01;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        
-        window.addEventListener('resize', () => {
+            // Animated particles on Layer 1
+            const canvas = document.getElementById('layer-1');
+            const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+
+            let particles = [];
+            const particleCount = 50;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                    this.color = '#64ffda';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.size > 0.1) this.size -= 0.01;
+                    if (this.x < 0 || this.x > canvas.width) this.x = Math.random() * canvas.width;
+                    if (this.y < 0 || this.y > canvas.height) this.y = Math.random() * canvas.height;
+                }
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+            });
+            
             initParticles();
+            animateParticles();
+
+            // Interactive skill highlighter
+            const skillElements = document.querySelectorAll('#skills .skill-icon');
+            if (skillElements.length > 0) {
+                let lastHighlightedIndex = -1;
+                setInterval(() => {
+                    if (lastHighlightedIndex > -1 && skillElements[lastHighlightedIndex]) {
+                        skillElements[lastHighlightedIndex].classList.remove('highlight-skill');
+                    }
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * skillElements.length);
+                    } while (skillElements.length > 1 && randomIndex === lastHighlightedIndex);
+                    skillElements[randomIndex].classList.add('highlight-skill');
+                    lastHighlightedIndex = randomIndex;
+                }, 2000);
+            }
+
+            // Typing effect for hero section
+            const skillsToType = ['AWS', 'GCP', 'Docker', 'Kubernetes', 'GitLab CI', 'Helm', 'Flux', 'Kafka', 'Linux', 'Automation'];
+            const typedElement = document.getElementById('typed-skill');
+            const cursorElement = document.querySelector('.type-cursor');
+
+            if (typedElement && cursorElement) {
+                let skillIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+
+                const type = () => {
+                    const currentSkill = skillsToType[skillIndex];
+                    let typeSpeed = 150;
+
+                    if (isDeleting) {
+                        typeSpeed /= 2;
+                        typedElement.textContent = currentSkill.substring(0, charIndex - 1);
+                        charIndex--;
+                    } else {
+                        typedElement.textContent = currentSkill.substring(0, charIndex + 1);
+                        typedElement.classList.add('pulse-effect');
+                        setTimeout(() => typedElement.classList.remove('pulse-effect'), 300);
+                        charIndex++;
+                    }
+                    
+                    if (!isDeleting && charIndex === currentSkill.length) {
+                        isDeleting = true;
+                        typeSpeed = 2000;
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        skillIndex = (skillIndex + 1) % skillsToType.length;
+                        typeSpeed = 500;
+                    }
+                    setTimeout(type, typeSpeed);
+                };
+                type();
+            }
+
+            // Decode effect
+            const decodeElements = document.querySelectorAll('.decode');
+            const chars = '!<>-_\\/[]{}—=+*^?#________';
+            
+            decodeElements.forEach(el => {
+                const text = el.dataset.text;
+                let interval = null;
+
+                const startDecode = () => {
+                    let iteration = 0;
+                    clearInterval(interval);
+                    
+                    interval = setInterval(() => {
+                        el.textContent = text.split("")
+                            .map((letter, index) => {
+                                if(index < iteration) {
+                                    return text[index];
+                                }
+                                return chars[Math.floor(Math.random() * chars.length)];
+                            })
+                            .join("");
+                        
+                        if(iteration >= text.length){
+                            clearInterval(interval);
+                        }
+                        
+                        iteration += 1 / 3;
+                    }, 30);
+                }
+
+                const resetText = () => {
+                     clearInterval(interval);
+                     el.textContent = text;
+                }
+
+                el.addEventListener('mouseover', startDecode);
+                el.addEventListener('mouseleave', resetText);
+                el.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    startDecode();
+                    setTimeout(resetText, 2000);
+                }, {passive: false});
+
+            });
         });
-        
-        initParticles();
-        animateParticles();
     </script>
 </body>
 </html>
