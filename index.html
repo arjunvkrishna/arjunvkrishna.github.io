@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Fira+Code:wght@500&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Custom styles for a modern look */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a192f; /* Navy background */
-            color: #ccd6f6; /* Light slate text */
-            overflow-x: hidden; /* Prevent horizontal scroll from parallax */
+            background-color: #0a192f;
+            /* Navy background */
+            color: #ccd6f6;
+            /* Light slate text */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll from parallax */
         }
+
         .highlight {
-            color: #64ffda; /* Neon green/teal for highlights */
+            color: #64ffda;
+            /* Neon green/teal for highlights */
         }
+
         .section-title {
-            color: #e6f1ff; /* Lightest slate for titles */
+            color: #e6f1ff;
+            /* Lightest slate for titles */
         }
+
         .card {
-            background-color: #112240; /* Lighter navy for cards */
+            background-color: #112240;
+            /* Lighter navy for cards */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             border: 1px solid #1d2d50;
         }
+
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
         }
-        
+
         /* Scroll reveal animation */
         .reveal {
             position: relative;
@@ -40,6 +53,7 @@
             opacity: 0;
             transition: 1s all ease;
         }
+
         .reveal.active {
             transform: translateY(0);
             opacity: 1;
@@ -54,6 +68,7 @@
             height: 100%;
             z-index: -1;
         }
+
         .parallax-layer {
             position: absolute;
             top: 0;
@@ -62,17 +77,23 @@
             height: 100%;
             background-repeat: repeat;
         }
-        #layer-1 { /* Particles */
+
+        #layer-1 {
+            /* Particles */
             opacity: 0.1;
         }
-        #layer-2 { /* Grid Pattern */
+
+        #layer-2 {
+            /* Grid Pattern */
             background-image:
                 linear-gradient(rgba(100, 255, 218, 0.05) 1px, transparent 1px),
                 linear-gradient(to right, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
             opacity: 0.5;
         }
-         #layer-3 { /* Faint Circuit Pattern */
+
+        #layer-3 {
+            /* Faint Circuit Pattern */
             background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M50 0 V100 M0 50 H100" stroke="%231d2d50" stroke-width="1.5" shape-rendering="crispEdges" /></pattern></defs><rect width="100%" height="100%" fill="url(%23p)"/></svg>');
             opacity: 0.2;
         }
@@ -82,27 +103,41 @@
         .type-cursor {
             display: inline-block;
             width: 3px;
-            height: 1.5rem; /* Match text size */
+            height: 1.5rem;
+            /* Match text size */
             background-color: #64ffda;
             animation: blink 1s infinite;
         }
+
         @keyframes blink {
-            50% { background-color: transparent; }
+            50% {
+                background-color: transparent;
+            }
         }
+
         .pulse-effect {
             animation: pulse-anim 0.3s ease-out;
         }
+
         @keyframes pulse-anim {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.1); }
-          100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         /* 1. Decode Effect on Name Hover */
         .decode {
             font-family: 'Fira Code', monospace;
         }
-        
+
         /* 2. Tech Stack Icon Animation */
         .skill-icon {
             transition: all 0.3s ease-in-out;
@@ -110,28 +145,66 @@
             opacity: 0;
             transform: translateY(20px);
         }
+
         .reveal.active .skill-icon {
             opacity: 1;
             transform: translateY(0);
         }
+
         .skill-icon:hover {
             color: #64ffda;
             transform: translateY(-5px) scale(1.1) !important;
         }
+
         /* Staggered animation delays */
-        .reveal.active .skill-icon:nth-child(1) { transition-delay: 0.1s; }
-        .reveal.active .skill-icon:nth-child(2) { transition-delay: 0.2s; }
-        .reveal.active .skill-icon:nth-child(3) { transition-delay: 0.3s; }
-        .reveal.active .skill-icon:nth-child(4) { transition-delay: 0.4s; }
-        .reveal.active .skill-icon:nth-child(5) { transition-delay: 0.5s; }
-        .reveal.active .skill-icon:nth-child(6) { transition-delay: 0.6s; }
-        .reveal.active .skill-icon:nth-child(7) { transition-delay: 0.7s; }
-        .reveal.active .skill-icon:nth-child(8) { transition-delay: 0.8s; }
-        .reveal.active .skill-icon:nth-child(9) { transition-delay: 0.9s; }
-        .reveal.active .skill-icon:nth-child(10) { transition-delay: 1.0s; }
-        .reveal.active .skill-icon:nth-child(11) { transition-delay: 1.1s; }
-        .reveal.active .skill-icon:nth-child(12) { transition-delay: 1.2s; }
-        
+        .reveal.active .skill-icon:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .reveal.active .skill-icon:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .reveal.active .skill-icon:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .reveal.active .skill-icon:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .reveal.active .skill-icon:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        .reveal.active .skill-icon:nth-child(6) {
+            transition-delay: 0.6s;
+        }
+
+        .reveal.active .skill-icon:nth-child(7) {
+            transition-delay: 0.7s;
+        }
+
+        .reveal.active .skill-icon:nth-child(8) {
+            transition-delay: 0.8s;
+        }
+
+        .reveal.active .skill-icon:nth-child(9) {
+            transition-delay: 0.9s;
+        }
+
+        .reveal.active .skill-icon:nth-child(10) {
+            transition-delay: 1.0s;
+        }
+
+        .reveal.active .skill-icon:nth-child(11) {
+            transition-delay: 1.1s;
+        }
+
+        .reveal.active .skill-icon:nth-child(12) {
+            transition-delay: 1.2s;
+        }
+
         /* Style for the randomly highlighted skill */
         .highlight-skill {
             color: #64ffda;
@@ -149,6 +222,7 @@
             gap: 10px;
             margin-bottom: 3rem;
         }
+
         .pipeline-node {
             width: 80px;
             height: 80px;
@@ -164,11 +238,13 @@
             transition: all 0.5s;
             position: relative;
         }
+
         .pipeline-node.active {
             border-color: #64ffda;
             color: #64ffda;
             box-shadow: 0 0 15px #64ffda;
         }
+
         .pipeline-connector {
             height: 4px;
             width: 100px;
@@ -176,6 +252,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .pipeline-packet {
             position: absolute;
             top: 0;
@@ -187,24 +264,66 @@
             box-shadow: 0 0 10px #64ffda;
             opacity: 0;
         }
-        .reveal.active .pipeline-node-1 { animation: pulse-node 4s infinite 0.5s; }
-        .reveal.active .packet-1 { animation: flow 1.5s linear infinite 1s; }
-        .reveal.active .pipeline-node-2 { animation: pulse-node 4s infinite 2.5s; }
-        .reveal.active .packet-2 { animation: flow 1.5s linear infinite 3s; }
-        .reveal.active .pipeline-node-3 { animation: pulse-node 4s infinite 4.5s; }
+
+        .reveal.active .pipeline-node-1 {
+            animation: pulse-node 4s infinite 0.5s;
+        }
+
+        .reveal.active .packet-1 {
+            animation: flow 1.5s linear infinite 1s;
+        }
+
+        .reveal.active .pipeline-node-2 {
+            animation: pulse-node 4s infinite 2.5s;
+        }
+
+        .reveal.active .packet-2 {
+            animation: flow 1.5s linear infinite 3s;
+        }
+
+        .reveal.active .pipeline-node-3 {
+            animation: pulse-node 4s infinite 4.5s;
+        }
 
         @keyframes flow {
-            0% { left: -10px; opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { left: 100px; opacity: 0; }
+            0% {
+                left: -10px;
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                left: 100px;
+                opacity: 0;
+            }
         }
+
         @keyframes pulse-node {
-            0%, 100% { border-color: #233554; color: #8892b0; box-shadow: none; }
-            25%, 75% { border-color: #64ffda; color: #64ffda; box-shadow: 0 0 15px #64ffda; }
+
+            0%,
+            100% {
+                border-color: #233554;
+                color: #8892b0;
+                box-shadow: none;
+            }
+
+            25%,
+            75% {
+                border-color: #64ffda;
+                color: #64ffda;
+                box-shadow: 0 0 15px #64ffda;
+            }
         }
     </style>
 </head>
+
 <body class="antialiased leading-relaxed">
     <div id="parallax-bg">
         <canvas id="layer-1" class="parallax-layer"></canvas>
@@ -221,7 +340,8 @@
                 <a href="#skills" class="hover:text-highlight transition-colors duration-300">Skills</a>
                 <a href="#experience" class="hover:text-highlight transition-colors duration-300">Experience</a>
                 <a href="#projects" class="hover:text-highlight transition-colors duration-300">Projects</a>
-                <a href="#contact" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight hover:bg-opacity-10 transition-colors duration-300">Contact</a>
+                <a href="#contact"
+                    class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight hover:bg-opacity-10 transition-colors duration-300">Contact</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
                 <i data-lucide="menu" class="w-6 h-6"></i>
@@ -233,7 +353,8 @@
             <a href="#skills" class="block py-2 hover:text-highlight">Skills</a>
             <a href="#experience" class="block py-2 hover:text-highlight">Experience</a>
             <a href="#projects" class="block py-2 hover:text-highlight">Projects</a>
-            <a href="#contact" class="block mt-2 px-4 py-2 border border-highlight text-highlight rounded-md text-center">Contact</a>
+            <a href="#contact"
+                class="block mt-2 px-4 py-2 border border-highlight text-highlight rounded-md text-center">Contact</a>
         </div>
     </header>
 
@@ -241,19 +362,27 @@
         <!-- Hero Section -->
         <section id="hero" class="min-h-[70vh] flex flex-col justify-center items-start reveal">
             <p class="text-lg highlight mb-4">Hi, my name is</p>
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-200 decode" data-text="ARJUN V K.">ARJUN V K.</h1>
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-400 mt-2">I herd containers and automate the inevitable.</h2>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-200 decode" data-text="ARJUN V K.">ARJUN V
+                K.</h1>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-400 mt-2">I herd containers and automate
+                the inevitable.</h2>
             <p class="mt-6 max-w-xl text-lg text-slate-400">
-                My job is to build the digital assembly lines that deliver code, hopefully without too many explosions. I specialize in "cloud-native," which is a fancy way of saying I'm good at using other people's computers.
+                My job is to build the digital assembly lines that deliver code, hopefully without too many explosions.
+                I specialize in "cloud-native," which is a fancy way of saying I'm good at using other people's
+                computers.
             </p>
             <!-- Interactive typing effect -->
             <div id="skill-container" class="mt-4 text-lg text-slate-400 flex items-center gap-3 h-8">
-                 <span id="typed-skill" class="highlight font-bold text-xl"></span>
+                <span id="typed-skill" class="highlight font-bold text-xl"></span>
                 <span class="type-cursor"></span>
             </div>
             <div class="mt-8 flex space-x-4">
-                <a href="https://github.com/arjunvkrishna" target="_blank" rel="noopener noreferrer" class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="github" class="w-8 h-8"></i></a>
-                <a href="https://linkedin.com/in/arjun-v-k-627b30197" target="_blank" rel="noopener noreferrer" class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                <a href="https://github.com/arjunvkrishna" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="github"
+                        class="w-8 h-8"></i></a>
+                <a href="https://linkedin.com/in/arjun-v-k-627b30197" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-highlight transition-transform hover:-translate-y-1"><i data-lucide="linkedin"
+                        class="w-8 h-8"></i></a>
             </div>
         </section>
 
@@ -266,19 +395,31 @@
             <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
                 <div class="md:col-span-3 text-slate-400 space-y-4 text-lg">
                     <p>
-                        Hello! I'm Arjun. As a DevOps engineer, my job is to automate things so that when something breaks, we can confidently blame the code instead of the infrastructure. My passion is writing scripts to solve problems that people didn't even know they had yet.
+                        Hello! I'm Arjun. As a DevOps engineer, my job is to automate things so that when something
+                        breaks, we can confidently blame the code instead of the infrastructure. My passion is writing
+                        scripts to solve problems that people didn't even know they had yet.
                     </p>
                     <p>
-                        I've navigated the complex backends of diverse industries like telecom, banking, gaming, food delivery, and even healthcare. It turns out that whether you're processing financial transactions or delivering a late-night pizza, everyone's servers need a babysitter. I've been that babysitter, armed with Kubernetes, GitOps, and a healthy dose of skepticism for any pull request that has more than 50 lines.
+                        I've navigated the complex backends of diverse industries like telecom, banking, gaming, food
+                        delivery, and even healthcare. It turns out that whether you're processing financial
+                        transactions or delivering a late-night pizza, everyone's servers need a babysitter. I've been
+                        that babysitter, armed with Kubernetes, GitOps, and a healthy dose of skepticism for any pull
+                        request that has more than 50 lines.
                     </p>
                     <p>
-                        I thrive on making complex systems look easy, mostly by wrestling with YAML files and cloud consoles until they submit. Whether it's on AWS or GCP, my goal is to build things that are so automated, they practically run themselves. After all, less manual work means more time to contemplate why the build failed this time.
+                        I thrive on making complex systems look easy, mostly by wrestling with YAML files and cloud
+                        consoles until they submit. Whether it's on AWS or GCP, my goal is to build things that are so
+                        automated, they practically run themselves. After all, less manual work means more time to
+                        contemplate why the build failed this time.
                     </p>
                 </div>
                 <div class="md:col-span-2 flex justify-center">
                     <div class="relative w-64 h-64 group">
-                        <div class="absolute inset-0 bg-highlight rounded-lg transform rotate-6 group-hover:rotate-3 transition-transform duration-300"></div>
-                        <img src="https://placehold.co/400x400/0a192f/ccd6f6?text=VK" alt="Arjun V K" class="relative w-full h-full rounded-lg object-cover z-10 grayscale hover:grayscale-0 transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-highlight rounded-lg transform rotate-6 group-hover:rotate-3 transition-transform duration-300">
+                        </div>
+                        <img src="https://placehold.co/400x400/0a192f/ccd6f6?text=VK" alt="Arjun V K"
+                            class="relative w-full h-full rounded-lg object-cover z-10 grayscale hover:grayscale-0 transition-all duration-300">
                     </div>
                 </div>
             </div>
@@ -286,23 +427,35 @@
 
         <!-- Skills Section -->
         <section id="skills" class="py-24 text-center reveal">
-             <h2 class="section-title text-3xl font-bold mb-12 flex items-center justify-center">
+            <h2 class="section-title text-3xl font-bold mb-12 flex items-center justify-center">
                 <span class="highlight mr-4">02.</span> My Arsenal of Acronyms
             </h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
                 <!-- Skill items -->
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="server" class="w-16 h-16"></i><span>AWS</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="cloud" class="w-16 h-16"></i><span>GCP</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="box" class="w-16 h-16"></i><span>Docker</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="ship" class="w-16 h-16"></i><span>Kubernetes</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="gitlab" class="w-16 h-16"></i><span>GitLab CI/CD</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="git-branch" class="w-16 h-16"></i><span>Git</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="anchor" class="w-16 h-16"></i><span>Helm</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="git-merge" class="w-16 h-16"></i><span>Flux (GitOps)</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="terminal" class="w-16 h-16"></i><span>Linux</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="area-chart" class="w-16 h-16"></i><span>Grafana</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="server-cog" class="w-16 h-16"></i><span>Web Servers</span></div>
-                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="message-square-more" class="w-16 h-16"></i><span>Kafka</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="server"
+                        class="w-16 h-16"></i><span>AWS</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="cloud"
+                        class="w-16 h-16"></i><span>GCP</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="box"
+                        class="w-16 h-16"></i><span>Docker</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="ship"
+                        class="w-16 h-16"></i><span>Kubernetes</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="gitlab"
+                        class="w-16 h-16"></i><span>GitLab CI/CD</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="git-branch"
+                        class="w-16 h-16"></i><span>Git</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="anchor"
+                        class="w-16 h-16"></i><span>Helm</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="git-merge"
+                        class="w-16 h-16"></i><span>Flux (GitOps)</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="terminal"
+                        class="w-16 h-16"></i><span>Linux</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="area-chart"
+                        class="w-16 h-16"></i><span>Grafana</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="server-cog"
+                        class="w-16 h-16"></i><span>Web Servers</span></div>
+                <div class="flex flex-col items-center space-y-2 skill-icon"><i data-lucide="message-square-more"
+                        class="w-16 h-16"></i><span>Kafka</span></div>
             </div>
         </section>
 
@@ -312,64 +465,76 @@
                 <span class="highlight mr-4">03.</span> Places That Paid Me to Stare at Terminals
                 <span class="h-px bg-slate-600 flex-grow ml-6"></span>
             </h2>
-             <!-- CI/CD Pipeline Animation -->
+            <!-- CI/CD Pipeline Animation -->
             <div class="pipeline-container reveal mb-16">
                 <div class="pipeline-node pipeline-node-1"><i data-lucide="git-commit" class="mb-1"></i> Build</div>
-                <div class="pipeline-connector"><div class="pipeline-packet packet-1"></div></div>
+                <div class="pipeline-connector">
+                    <div class="pipeline-packet packet-1"></div>
+                </div>
                 <div class="pipeline-node pipeline-node-2"><i data-lucide="file-check-2" class="mb-1"></i> Test</div>
-                <div class="pipeline-connector"><div class="pipeline-packet packet-2"></div></div>
+                <div class="pipeline-connector">
+                    <div class="pipeline-packet packet-2"></div>
+                </div>
                 <div class="pipeline-node pipeline-node-3"><i data-lucide="rocket" class="mb-1"></i> Deploy</div>
             </div>
 
             <div class="space-y-12">
                 <!-- Job 1 -->
                 <div class="card p-6 rounded-lg">
-                    <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Inspired Gaming</span></h3>
+                    <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Inspired
+                            Gaming</span></h3>
                     <p class="text-slate-400 mb-4">Present</p>
                     <ul class="list-disc list-inside text-slate-400 space-y-2">
                         <li>Taught Kubernetes clusters how to behave, mostly successfully, across AWS and GCP.</li>
-                        <li>Convinced teams that letting Git manage everything was a good idea. Now we just blame the repo.</li>
-                        <li>Built CI/CD pipelines that moved code from a dev's laptop to production, occasionally faster than they could write new bugs.</li>
+                        <li>Convinced teams that letting Git manage everything was a good idea. Now we just blame the
+                            repo.</li>
+                        <li>Built CI/CD pipelines that moved code from a dev's laptop to production, occasionally faster
+                            than they could write new bugs.</li>
                         <li>Made pretty Grafana dashboards so we could watch things fail in high resolution.</li>
                     </ul>
                 </div>
                 <!-- Job 2 -->
                 <div class="card p-6 rounded-lg">
-                    <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Seqato</span></h3>
+                    <h3 class="text-xl font-bold text-slate-200">DevOps Engineer <span class="highlight">@ Seqato</span>
+                    </h3>
                     <p class="text-slate-400 mb-4">3 Years</p>
                     <ul class="list-disc list-inside text-slate-400 space-y-2">
-                        <li>Kept the lights on for a mix of new-fangled cloud servers and some ancient box humming in a closet.</li>
-                        <li>Wrote enough Terraform and Ansible to build a small digital empire, or at least a staging environment.</li>
+                        <li>Kept the lights on for a mix of new-fangled cloud servers and some ancient box humming in a
+                            closet.</li>
+                        <li>Wrote enough Terraform and Ansible to build a small digital empire, or at least a staging
+                            environment.</li>
                         <li>Began the great migration from Docker containers to the promised land of Kubernetes.</li>
                         <li>Served as the designated Kafka whisperer and web server therapist.</li>
                     </ul>
                 </div>
             </div>
         </section>
-        
+
         <!-- Certifications Section -->
         <section id="certifications" class="py-24 reveal">
-             <h2 class="section-title text-3xl font-bold mb-12 text-center">Fancy Papers That Say I Know Things</h2>
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                 <div class="card p-6 rounded-lg flex items-center space-x-6">
-                     <div class="flex-shrink-0">
-                         <i data-lucide="shield-check" class="w-16 h-16 text-highlight"></i>
-                     </div>
-                     <div>
-                         <h3 class="text-xl font-bold text-slate-200">Certified Ethical Hacker (CEH)</h3>
-                         <p class="text-slate-400">Officially certified to break things (ethically, of course) before someone else does (unethically).</p>
-                     </div>
-                 </div>
-                 <div class="card p-6 rounded-lg flex items-center space-x-6">
-                     <div class="flex-shrink-0">
-                         <i data-lucide="hard-hat" class="w-16 h-16 text-highlight"></i>
-                     </div>
-                     <div>
-                         <h3 class="text-xl font-bold text-slate-200">Red Hat Certified System Admin (RHCSA)</h3>
-                         <p class="text-slate-400">Proves I can navigate a Linux terminal without needing to Google every single command. Mostly.</p>
-                     </div>
-                 </div>
-             </div>
+            <h2 class="section-title text-3xl font-bold mb-12 text-center">Fancy Papers That Say I Know Things</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="card p-6 rounded-lg flex items-center space-x-6">
+                    <div class="flex-shrink-0">
+                        <i data-lucide="shield-check" class="w-16 h-16 text-highlight"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-200">Certified Ethical Hacker (CEH)</h3>
+                        <p class="text-slate-400">Officially certified to break things (ethically, of course) before
+                            someone else does (unethically).</p>
+                    </div>
+                </div>
+                <div class="card p-6 rounded-lg flex items-center space-x-6">
+                    <div class="flex-shrink-0">
+                        <i data-lucide="hard-hat" class="w-16 h-16 text-highlight"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-200">Red Hat Certified System Admin (RHCSA)</h3>
+                        <p class="text-slate-400">Proves I can navigate a Linux terminal without needing to Google every
+                            single command. Mostly.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Projects Section -->
@@ -386,7 +551,8 @@
                         <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
                     </div>
                     <h3 class="text-xl font-bold text-slate-200 mb-2">Automated K8s Provisioner</h3>
-                    <p class="text-slate-400 flex-grow">A collection of scripts that promise to build a Kubernetes cluster without manual intervention. It works most of the time.</p>
+                    <p class="text-slate-400 flex-grow">A collection of scripts that promise to build a Kubernetes
+                        cluster without manual intervention. It works most of the time.</p>
                     <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
                         <span class="bg-gray-700 px-2 py-1 rounded">Terraform</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">Ansible</span>
@@ -396,13 +562,14 @@
                 </div>
                 <!-- Project Card 2 -->
                 <div class="card p-6 rounded-lg flex flex-col">
-                     <div class="flex justify-between items-center mb-4">
+                    <div class="flex justify-between items-center mb-4">
                         <i data-lucide="folder-git-2" class="w-10 h-10 text-highlight"></i>
                         <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
                     </div>
                     <h3 class="text-xl font-bold text-slate-200 mb-2">GitOps Monitoring Stack</h3>
-                    <p class="text-slate-400 flex-grow">A setup to deploy Prometheus and Grafana using the very GitOps principles it's meant to monitor. What could go wrong?</p>
-                     <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
+                    <p class="text-slate-400 flex-grow">A setup to deploy Prometheus and Grafana using the very GitOps
+                        principles it's meant to monitor. What could go wrong?</p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
                         <span class="bg-gray-700 px-2 py-1 rounded">Kubernetes</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">Helm</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">Flux</span>
@@ -411,13 +578,14 @@
                 </div>
                 <!-- Project Card 3 -->
                 <div class="card p-6 rounded-lg flex flex-col">
-                     <div class="flex justify-between items-center mb-4">
+                    <div class="flex justify-between items-center mb-4">
                         <i data-lucide="folder-git-2" class="w-10 h-10 text-highlight"></i>
                         <a href="#" class="hover:text-highlight"><i data-lucide="github" class="w-6 h-6"></i></a>
                     </div>
                     <h3 class="text-xl font-bold text-slate-200 mb-2">Dynamic CI/CD Templates</h3>
-                    <p class="text-slate-400 flex-grow">A heroic attempt to stop developers from copy-pasting the same 200 lines of CI YAML into every new project.</p>
-                     <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
+                    <p class="text-slate-400 flex-grow">A heroic attempt to stop developers from copy-pasting the same
+                        200 lines of CI YAML into every new project.</p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-sm text-slate-400">
                         <span class="bg-gray-700 px-2 py-1 rounded">GitLab CI</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">YAML</span>
                         <span class="bg-gray-700 px-2 py-1 rounded">Docker</span>
@@ -433,9 +601,11 @@
             </h2>
             <h3 class="text-5xl font-black text-slate-200 mb-4">Talk To Me</h3>
             <p class="text-slate-400 mb-8">
-                My inbox is a bottomless pit, but feel free to throw your message in anyway. I'm open to interesting projects, challenging problems, or just hearing about why your build failed.
+                My inbox is a bottomless pit, but feel free to throw your message in anyway. I'm open to interesting
+                projects, challenging problems, or just hearing about why your build failed.
             </p>
-            <a href="mailto:arjunvk42@gmail.com" class="inline-block px-8 py-4 border border-highlight text-highlight rounded-md text-lg hover:bg-highlight hover:bg-opacity-10 transition-colors duration-300">
+            <a href="mailto:arjunvk42@gmail.com?body=Hi%20Arjun%2C%0A%0A"
+                class="inline-block px-8 py-4 border border-highlight text-highlight rounded-md text-lg hover:bg-highlight hover:bg-opacity-10 transition-colors duration-300">
                 Launch a Probe
             </a>
         </section>
@@ -475,16 +645,16 @@
             window.addEventListener("scroll", reveal);
             // Trigger reveal on load
             reveal();
-            
+
             // Parallax background effect
             const layer1 = document.getElementById('layer-1');
             const layer2 = document.getElementById('layer-2');
             const layer3 = document.getElementById('layer-3');
             window.addEventListener('scroll', () => {
                 const scrollY = window.scrollY;
-                if(layer1) layer1.style.transform = `translateY(${scrollY * 0.1}px)`;
-                if(layer2) layer2.style.transform = `translateY(${scrollY * 0.3}px)`;
-                if(layer3) layer3.style.transform = `translateY(${scrollY * 0.5}px)`;
+                if (layer1) layer1.style.transform = `translateY(${scrollY * 0.1}px)`;
+                if (layer2) layer2.style.transform = `translateY(${scrollY * 0.3}px)`;
+                if (layer3) layer3.style.transform = `translateY(${scrollY * 0.5}px)`;
             });
 
 
@@ -536,13 +706,13 @@
                 }
                 requestAnimationFrame(animateParticles);
             }
-            
+
             window.addEventListener('resize', () => {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 initParticles();
             });
-            
+
             initParticles();
             animateParticles();
 
@@ -587,7 +757,7 @@
                         setTimeout(() => typedElement.classList.remove('pulse-effect'), 300);
                         charIndex++;
                     }
-                    
+
                     if (!isDeleting && charIndex === currentSkill.length) {
                         isDeleting = true;
                         typeSpeed = 2000;
@@ -604,7 +774,7 @@
             // Decode effect
             const decodeElements = document.querySelectorAll('.decode');
             const chars = '!<>-_\\/[]{}—=+*^?#________';
-            
+
             decodeElements.forEach(el => {
                 const text = el.dataset.text;
                 let interval = null;
@@ -612,28 +782,28 @@
                 const startDecode = () => {
                     let iteration = 0;
                     clearInterval(interval);
-                    
+
                     interval = setInterval(() => {
                         el.textContent = text.split("")
                             .map((letter, index) => {
-                                if(index < iteration) {
+                                if (index < iteration) {
                                     return text[index];
                                 }
                                 return chars[Math.floor(Math.random() * chars.length)];
                             })
                             .join("");
-                        
-                        if(iteration >= text.length){
+
+                        if (iteration >= text.length) {
                             clearInterval(interval);
                         }
-                        
+
                         iteration += 1 / 3;
                     }, 30);
                 }
 
                 const resetText = () => {
-                     clearInterval(interval);
-                     el.textContent = text;
+                    clearInterval(interval);
+                    el.textContent = text;
                 }
 
                 el.addEventListener('mouseover', startDecode);
@@ -642,10 +812,11 @@
                     e.preventDefault();
                     startDecode();
                     setTimeout(resetText, 2000);
-                }, {passive: false});
+                }, { passive: false });
 
             });
         });
     </script>
 </body>
+
 </html>
